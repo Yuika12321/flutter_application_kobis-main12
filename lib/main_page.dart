@@ -1,3 +1,5 @@
+// flutter run -d chrome --web-renderer html
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_kobis/movie_api.dart';
 import 'package:flutter_application_kobis/movie_form.dart';
@@ -24,7 +26,7 @@ class _MainPageState extends State<MainPage> {
     var dt = await showDatePicker(
         context: context,
         initialDate: DateTime.now().subtract(const Duration(days: 1)),
-        firstDate: DateTime(2012, 03, 02),
+        firstDate: DateTime(2004, 01, 01),
         lastDate: DateTime.now().subtract(const Duration(days: 1)));
     String selectedDate = dt.toString().split(' ')[0].replaceAll('-', '');
     MovieApi movieApi = MovieApi();
@@ -41,7 +43,7 @@ class _MainPageState extends State<MainPage> {
                   return Movie_Form(movie: movieData[index]);
                 },
                 separatorBuilder: (context, index) => const Divider(),
-                itemCount: movieData!.length); //!를 쓰면 무조건 있다는 뜻
+                itemCount: movieData!.length); //!를 쓰면 무조건 있다
           } else {
             return const Center(child: CircularProgressIndicator());
           }

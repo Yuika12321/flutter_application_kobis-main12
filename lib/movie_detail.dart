@@ -21,7 +21,6 @@ class _MovieDetailState extends State<MovieDetail> {
         body: FutureBuilder(
             future: movie,
             builder: (BuildContext context, AsyncSnapshot snapshot) {
-              // 데이터를 정상적으로 받아오게 되면 다음 부분을 실행하게 되는 부분
               if (snapshot.hasData) {
                 var movieData = snapshot.data;
                 return Padding(
@@ -34,15 +33,15 @@ class _MovieDetailState extends State<MovieDetail> {
                           child: Center(
                             child: Text(movieData['movieNm'],
                                 style: const TextStyle(
-                                    fontSize: 50, fontWeight: FontWeight.bold)),
+                                    fontSize: 30, fontWeight: FontWeight.bold)),
                           ),
                         ),
-                        Row(
+                        const Row(
                           children: [
                             Expanded(
                                 child: Text(
-                              '키워드 : ${movieData['typeNm']}',
-                              style: const TextStyle(
+                              '??',
+                              style: TextStyle(
                                 fontSize: 20,
                               ),
                             )),

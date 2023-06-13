@@ -8,13 +8,9 @@ class Movie_Form extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /* var posters = movie['posters'].toString().isEmpty
-        ? Image.asset('assets/images/no_image.png')
-        : Image.network(movie['posters'].split('|')[0]); */
     var movieTitle = movie['movieNm'];
+    var movieAcc = movie['salesAcc'];
 
-    //MovieApi movieApi = MovieApi();
-    //var movies = movieApi.searchDetail(moviecode: movie['movieCd'].toString());
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -31,23 +27,29 @@ class Movie_Form extends StatelessWidget {
           height: 200,
           child: Row(
             children: [
-              const SizedBox(
+              SizedBox(
                 width: 200,
                 child: SizedBox(
-                  child: Text('그림이 없어용'),
+                  child: Text('${movie['rank']}위'),
                 ),
-              ),
-              const SizedBox(
-                width: 10,
               ),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('$movieTitle (${movie['openDt']})',
-                        style: const TextStyle(fontSize: 20)),
-                    const Text('설명',
-                        style: TextStyle(fontSize: 15, color: Colors.grey)),
+                    if (!(movie['rankOldAndNew'].toString() == 'OLD'))
+                      Text(
+                        movie['rankOldAndNew'],
+                        style: const TextStyle(color: Colors.red),
+                      ),
+                    Text(
+                      '$movieTitle',
+                      style: const TextStyle(fontSize: 25),
+                    ),
+                    Text(
+                        '개봉일 : ${movie['openDt'].toString().replaceAll('-', ' | ')}'),
+                    Text('누적 매출액 : $movieAcc원'),
+                    Text('누적 관객 수: ${movie['audiAcc']}'),
                   ],
                 ),
               )
